@@ -18,6 +18,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        /*
+ pass url like this
+         custom schema name = deeplinkmyapp
+          host name                  = pagename
+         message name           = name=Apple%20Mac%20Book%20Air
+        deeplinkmyapp://pagename?name=Apple%20Mac%20Book%20Air
+*/
+        
+        let urlComponent = URLComponents.init(url: url, resolvingAgainstBaseURL: true)
+        
+        print("url: \(url)")
+        print("url host: \(String(describing: urlComponent?.host))")
+        print("url path: \(String(describing: urlComponent?.path))")
+        
+        var componentPath = url.path.components(separatedBy: "/")
+        componentPath.removeFirst()
+        
+        if url.host! == "product" {
+            // if RootviewController is NavigationController
+            //rootViewisNavigationController(urlComponent: urlComponent)
+            
+            // if RootViewController is TabBarController
+            //rootViewControllerisOnlyTabBarController(urlComponent: urlComponent)
+            
+            // if RootViewController is TabBarController
+            rootViewControllerisTabBarController(urlComponent: urlComponent)
+        }
+        return true
+    }
+    
+    // MARK:- Root NavigationController
+    
+    private func rootViewisNavigationController(urlComponent: URLComponents?){
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVc = storyBoard.instantiateViewController(withIdentifier: "SecondVC") as! SecondVC
+        secondVc.descriptionString = urlComponent?.queryItems?.first?.value
+        let navVC = self.window?.rootViewController as? UINavigationController
+        navVC?.pushViewController(secondVc, animated: true)
+    }
+    
+    // Mark:- Root TabBarController
+    
+    private func rootViewControllerisOnlyTabBarController(urlComponent: URLComponents?) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        if let secondVC = storyBoard.instantiateViewController(withIdentifier: "SecondVC") as? SecondVC,
+            let tabBar = window?.rootViewController as? UITabBarController {
+            secondVC.descriptionString = urlComponent?.queryItems?.first?.value
+            tabBar.selectedViewController?.present(secondVC, animated: true, completion: nil)
+        }
+    }
+    
+    // Mark: Root TabBarController with NavigationController
+    
+    private func rootViewControllerisTabBarController(urlComponent: URLComponents?) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+       if let secondVC = storyBoard.instantiateViewController(withIdentifier: "SecondVC") as? SecondVC,
+        let tabBar = window?.rootViewController as? UITabBarController,
+        let navVC = tabBar.selectedViewController as? UINavigationController {
+        tabBar.selectedIndex = 1
+        secondVC.descriptionString = urlComponent?.queryItems?.first?.value
+        navVC.pushViewController(secondVC, animated: true)
+        }
+    }
+    
+  
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

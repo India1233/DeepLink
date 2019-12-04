@@ -14,6 +14,7 @@
 		3C1793A223968BCF00208299 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1793A023968BCF00208299 /* LaunchScreen.storyboard */; };
 		3C1793AD23968BCF00208299 /* DeepLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1793AC23968BCF00208299 /* DeepLinkTests.swift */; };
 		3C1793B823968BCF00208299 /* DeepLinkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1793B723968BCF00208299 /* DeepLinkUITests.swift */; };
+		3C1793C72397A3E700208299 /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1793C62397A3E700208299 /* SecondVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		3C1793B323968BCF00208299 /* DeepLinkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeepLinkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1793B723968BCF00208299 /* DeepLinkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkUITests.swift; sourceTree = "<group>"; };
 		3C1793B923968BCF00208299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C1793C5239781B500208299 /* DeepLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeepLink.entitlements; sourceTree = "<group>"; };
+		3C1793C62397A3E700208299 /* SecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +100,10 @@
 		3C17939623968BCB00208299 /* DeepLink */ = {
 			isa = PBXGroup;
 			children = (
+				3C1793C5239781B500208299 /* DeepLink.entitlements */,
 				3C17939723968BCB00208299 /* AppDelegate.swift */,
 				3C17939923968BCB00208299 /* ViewController.swift */,
+				3C1793C62397A3E700208299 /* SecondVC.swift */,
 				3C17939B23968BCB00208299 /* Main.storyboard */,
 				3C17939E23968BCF00208299 /* Assets.xcassets */,
 				3C1793A023968BCF00208299 /* LaunchScreen.storyboard */,
@@ -193,6 +198,11 @@
 				TargetAttributes = {
 					3C17939323968BCB00208299 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+						};
 					};
 					3C1793A723968BCF00208299 = {
 						CreatedOnToolsVersion = 10.1;
@@ -257,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C17939A23968BCB00208299 /* ViewController.swift in Sources */,
+				3C1793C72397A3E700208299 /* SecondVC.swift in Sources */,
 				3C17939823968BCB00208299 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,7 +444,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8ZB6PL47P;
 				INFOPLIST_FILE = DeepLink/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +463,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8ZB6PL47P;
 				INFOPLIST_FILE = DeepLink/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
